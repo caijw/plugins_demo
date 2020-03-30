@@ -1,5 +1,6 @@
 # Plugins to include in the build.
 GENERATED_PLUGINS=\
+	binder \
 
 GENERATED_PLUGINS_DIR=flutter/ephemeral/.plugin_symlinks
 # A plugin library name plugin name with _plugin appended.
@@ -17,6 +18,7 @@ PLUGIN_CPPFLAGS=$(foreach plugin,$(GENERATED_PLUGINS),\
 # Targets
 
 # Implicit rules don't match phony targets, so list plugin builds explicitly.
+$(OUT_DIR)/libbinder_plugin.so: | binder
 
 .PHONY: $(GENERATED_PLUGINS)
 $(GENERATED_PLUGINS):

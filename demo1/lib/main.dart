@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:binder/binder.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -100,6 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            RaisedButton(
+              child: Text("platformVersion"),
+              onPressed: () async {
+                 String version = await Binder.platformVersion;
+                 print('platformVersion ${version}');
+              },
+            )
           ],
         ),
       ),
