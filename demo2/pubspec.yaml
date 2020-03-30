@@ -20,13 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # binder:
-  #   git:
-  #     url: https://github.com/caijw/plugins
-  #     path: binder
-  #     ref: master
   binder:
-    path: /mnt/hgfs/WeOS/plugins/binder
+    path: /mnt/hgfs/WeOS/plugins/binder_channel
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
