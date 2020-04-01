@@ -50,6 +50,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  String _setDesktopWindowTitle = '_setDesktopWindowTitle';
+  String _setDrawerWindowTitle = '_setDrawerWindowTitle';
+  String _setWindowSourceTitle = '_setWindowSourceTitle';
+  int _setWindowSourceX = 100;
+  int _setWindowSourceY = 100;
+
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -103,12 +110,33 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             RaisedButton(
-              child: Text("setDesktopWindow('hahaha')"),
+              child: Text('setDesktopWindow(${_setDesktopWindowTitle})'),
               onPressed: () async {
-                 await IPC.ipcSetDesktopWindow('hahaha');
-                 print('setDesktopWindow(\'hahaha\') finish');
+                 await IPC.setDesktopWindow(_setDesktopWindowTitle);
+                 print('setDesktopWindow(${_setDesktopWindowTitle}) finish');
               },
-            )
+            ),
+            RaisedButton(
+              child: Text('setDrawerWindow(${_setDrawerWindowTitle})'),
+              onPressed: () async {
+                 await IPC.setDrawerWindow(_setDrawerWindowTitle);
+                 print('setDrawerWindow(${_setDrawerWindowTitle}) finish');
+              },
+            ),
+            RaisedButton(
+              child: Text('setWindowSource(${_setWindowSourceTitle})'),
+              onPressed: () async {
+                 await IPC.setWindowSource(_setWindowSourceTitle, _setWindowSourceX, _setWindowSourceY);
+                 print('setWindowSource(${_setWindowSourceTitle}) finish');
+              },
+            ),
+            RaisedButton(
+              child: Text("flush()"),
+              onPressed: () async {
+                 int flushRet = await IPC.flush();
+                 print('flush() finish, ret ${flushRet}');
+              },
+            ),
           ],
         ),
       ),
