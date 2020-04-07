@@ -25,7 +25,7 @@ packages:
   binder:
     dependency: "direct main"
     description:
-      path: "/mnt/hgfs/WeOS/plugins/binder"
+      path: "/home/jingweicai/Documents/code/plugins/binder"
       relative: false
     source: path
     version: "0.0.1"
