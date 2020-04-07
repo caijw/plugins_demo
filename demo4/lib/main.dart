@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ipc/ipc.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -56,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _setWindowSourceX = 100;
   int _setWindowSourceY = 100;
 
+  String appid = '123';
+  String entry_path = '';
+  String env_version = 'develop';
 
   void _incrementCounter() {
     setState(() {
@@ -112,29 +114,37 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               child: Text('setDesktopWindow(${_setDesktopWindowTitle})'),
               onPressed: () async {
-                 await IPC.setDesktopWindow(_setDesktopWindowTitle);
-                 print('setDesktopWindow(${_setDesktopWindowTitle}) finish');
+                await DisplayService.setDesktopWindow(_setDesktopWindowTitle);
+                print('setDesktopWindow(${_setDesktopWindowTitle}) finish');
               },
             ),
             RaisedButton(
               child: Text('setDrawerWindow(${_setDrawerWindowTitle})'),
               onPressed: () async {
-                 await IPC.setDrawerWindow(_setDrawerWindowTitle);
-                 print('setDrawerWindow(${_setDrawerWindowTitle}) finish');
+                await DisplayService.setDrawerWindow(_setDrawerWindowTitle);
+                print('setDrawerWindow(${_setDrawerWindowTitle}) finish');
               },
             ),
             RaisedButton(
               child: Text('setWindowSource(${_setWindowSourceTitle})'),
               onPressed: () async {
-                 await IPC.setWindowSource(_setWindowSourceTitle, _setWindowSourceX, _setWindowSourceY);
-                 print('setWindowSource(${_setWindowSourceTitle}) finish');
+                await DisplayService.setWindowSource(_setWindowSourceTitle,
+                    _setWindowSourceX, _setWindowSourceY);
+                print('setWindowSource(${_setWindowSourceTitle}) finish');
               },
             ),
             RaisedButton(
               child: Text("flush()"),
               onPressed: () async {
-                 int flushRet = await IPC.flush();
-                 print('flush() finish, ret ${flushRet}');
+                int flushRet = await DisplayService.flush();
+                print('flush() finish, ret ${flushRet}');
+              },
+            ),
+            RaisedButton(
+              child: Text("launchMiniProgram(${appid}, ${entry_path}, ${env_version})"),
+              onPressed: () async {
+                int ret = await ProcessManagerService.launchMiniProgram(appid, entry_path, env_version);
+                print('launchMiniProgram() finish, ret ${ret}');
               },
             ),
           ],
